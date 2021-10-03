@@ -45,21 +45,32 @@ namespace Keystone.HelloChallenge
 
                 await foreach (var rate in _sendItApiClient.GetRatesAsync(cancellationToken))
                 {
-                    if (!(rate.MaxCubicWeight >= shipmentLine.CubicWeight) || rate.MaxParcelValue < shipmentLine.DeclaredValue) continue;
-                    _log.LogDebug($"Calculate SendIt from item code: {shipmentLine.ItemCode}, pick rate code: {rate.RateCode}");
+                    if (rate.MaxCubicWeight >= shipmentLine.CubicWeight &&
+                        rate.MinCubicWeight < shipmentLine.CubicWeight &&
+                        rate.MaxParcelValue < shipmentLine.DeclaredValue)
+                    {
+                        _log.LogDebug($"Calculate SendIt from item code: {shipmentLine.ItemCode}, pick rate code: {rate.RateCode}");
 
-                    sendItSum += (rate.PricePerUnitValue * shipmentLine.DeclaredValue + rate.PricePerUnitWeight * (decimal)shipmentLine.CubicWeight);
-                    sendItRateCodes.Add(rate.RateCode);
-                    break;
+                        sendItSum += (rate.PricePerUnitValue * shipmentLine.DeclaredValue + rate.PricePerUnitWeight * (decimal)shipmentLine.CubicWeight);
+                        sendItRateCodes.Add(rate.RateCode);
+                        break;
+                    }
                 }
             }
 
-            if (quickShipSum <= sendItSum)
+            if (quickShipSum <= sendItSum || sendItSum == 0)
             {
                 return new Carrier(nameof(_quickShipApiClient), string.Join(", ", quickShipShippingClasses), quickShipSum);
             }
 
-            return new Carrier(nameof(_sendItApiClient), string.Join(", ", sendItRateCodes), sendItSum);
+            if (sendItSum > 0)
+            {
+                return new Carrier(nameof(_sendItApiClient), string.Join(", ", sendItRateCodes), sendItSum);
+            }
+
+            var errorMessage = "Cannot select the Best Carrier";
+            _log.LogError(errorMessage);
+            throw new Exception(errorMessage);
         }
     }
 }

@@ -59,3 +59,11 @@ This is provided for your reference.
 The actual concrete implementations of these clients is in an assembly
 in the `lib` folder. You don't need to know anything about this, treat it
 as a black box and imagine the implementation could change at any time.
+
+## Questions
+- How to decide the rate code in the returned result of Carrier?
+  - I used the concat of all the *ShippingClassed* (If using *QuickShip*) or *RateCode* (If using *SendIt*)
+- When using *SendIt*, if the *shipmentLine*'s weight is between the `Minimum` and the `Maxmum` but the `declared value` is above the Maxium allowed, choose which one? 
+  - By default, it will not apply the *QuickShip*, it can choosed to ignore the `Minmum` weight check, but this may cause the result incorrect. 
+- What if there is no rate available can be picked from the *QuickShip*?
+  - This will cause the rate of *QuickShip* will not be selected and sum will not be added
