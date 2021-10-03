@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31512.422
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keystone.HelloChallenge", "src\Keystone.HelloChallenge\Keystone.HelloChallenge.csproj", "{D59C61C1-A6EE-4361-9798-FBD9218F6555}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keystone.HelloChallenge.Clients.Abstractions", "src\Keystone.HelloChallenge.Clients.Abstractions\Keystone.HelloChallenge.Clients.Abstractions.csproj", "{F2C65609-63F8-4029-87F7-97CF851B0FF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D59C61C1-A6EE-4361-9798-FBD9218F6555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59C61C1-A6EE-4361-9798-FBD9218F6555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59C61C1-A6EE-4361-9798-FBD9218F6555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59C61C1-A6EE-4361-9798-FBD9218F6555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2C65609-63F8-4029-87F7-97CF851B0FF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2C65609-63F8-4029-87F7-97CF851B0FF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2C65609-63F8-4029-87F7-97CF851B0FF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2C65609-63F8-4029-87F7-97CF851B0FF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9CAD325-E75C-455C-81DA-54C9EBD55C57}
+	EndGlobalSection
+EndGlobal
